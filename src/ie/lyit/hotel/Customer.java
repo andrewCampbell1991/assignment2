@@ -1,11 +1,16 @@
 package ie.lyit.hotel;
 
+import  ie.lyit.serialize.CustomerSerializer;
+import java.util.*;
+
 public class Customer extends Person{// INHERITANCE - Customer IS-A Person
 	// Customer has name, address, & phoneNumber from Person
 	private String emailAddress;    // AND emailAddress
-	private int number;			    // AND number
-
-	private static int nextNumber=1;// static for unique number - starts off at 1
+	
+	public static int number= 0;
+	private int custID;
+	// AND number
+	//public static int nextNumber=1;// static for unique number - starts off at 1
 	
 	// Default Constructor
 	// Called when object is created like this ==> 
@@ -14,7 +19,7 @@ public class Customer extends Person{// INHERITANCE - Customer IS-A Person
 		super();			// NOTE:Don't need to call super() explicitly.
 		emailAddress=null;
 		// Set number to static nextNumber before incrementing nextNumber
-		number=nextNumber++;
+		custID=number++;
 	}
 	
 	// Initialization Constructor
@@ -28,7 +33,7 @@ public class Customer extends Person{// INHERITANCE - Customer IS-A Person
 		// And then initialise Customers own instance variables
 		emailAddress=email;
 		// And finally set number to static nextNumber before incrementing nextNumber
-		number=nextNumber++;
+		custID=number++;
 	}
 
 	// OVERRIDING the Person toString() method!
@@ -54,9 +59,12 @@ public class Customer extends Person{// INHERITANCE - Customer IS-A Person
 	}
 
 	// set() and get() methods
+	
+	
 	public void setEmailAddress(String emailAddress){
 		this.emailAddress=emailAddress;
 	}
+	
 	public String getEmailAddress(){
 		return this.emailAddress;
 	}	
@@ -65,4 +73,39 @@ public class Customer extends Person{// INHERITANCE - Customer IS-A Person
 	public int getNumber(){
 		return number;
 	}	
+	
+	public void read() throws IllegalArgumentException{
+		Scanner kbString = new Scanner(System.in);	
+		
+		String t, fN, sN, address, email, pNo;
+		
+		int customerNumber =0;
+		
+		boolean balanceGoodInput = false;
+		
+		System.out.println("ENTER CUSTOMER DETAILS ==>");
+   	    System.out.print("Title : "); t=kbString.nextLine();
+		System.out.print("First Name : "); fN=kbString.nextLine();
+	    System.out.print("Surname : "); sN=kbString.nextLine();
+	    //name = new Name(t, fN, sN);
+		System.out.print("ADDRESS: ");address=kbString.nextLine();
+		System.out.print("Phone number: ");pNo=kbString.nextLine();
+		System.out.print("Email: ");email=kbString.nextLine();
+		System.out.print("Customer designated number is:- "+number++);
+				
+		//number=nextNumber;
+		//nextNumber++;
+		
+		/*do{
+			try{
+				System.out.print("Customer number : ");customerNumber=kbString.nextInt();
+				balanceGoodInput = true;
+			}
+			catch(InputMismatchException e){
+				System.out.println("Please enter input of type int "); 
+				kbString.nextLine();
+			}
+		}while(!(balanceGoodInput));*/
+	}
+
 }
